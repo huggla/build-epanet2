@@ -3,7 +3,7 @@ ARG DESTDIR="/epanet2"
 
 FROM huggla/alpine-official:$TAG as alpine
 
-ARG BUILDDEPS="build-base"
+ARG BUILDDEPS="build-base wget"
 ARG DOWNLOAD="https://www.epa.gov/sites/production/files/2018-10/en2source.zip"
 ARG DESTDIR
 
