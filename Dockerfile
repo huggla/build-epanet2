@@ -1,5 +1,5 @@
 ARG TAG="20181204"
-ARG DESTDIR="/epanet2apa"
+ARG DESTDIR="/epanet"
 
 FROM huggla/alpine-official:$TAG as alpine
 
@@ -21,3 +21,9 @@ RUN apk add $BUILDDEPS \
  && sed -i 's|//#define CLE|#define CLE|g' epanet.c \
  && sed -i 's|#define DLL|//#define DLL|g' epanet.c \
  && make
+
+FROM huggla/busybox:$TAG as image
+
+ARG DESTDIR
+
+COPY --from=alpine $DESTDIR $DESTDIR
