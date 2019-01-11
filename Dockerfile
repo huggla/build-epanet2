@@ -3,27 +3,14 @@ ARG DESTDIR="/epanet2"
 
 FROM huggla/alpine-official:$TAG as alpine
 
-ARG BUILDDEPS="build-base wget"
-ARG DOWNLOAD="https://www.epa.gov/sites/production/files/2018-10/en2source.zip"
-ARG DESTDIR
-
-RUN apk add $BUILDDEPS \
- && downloadDir="$(mktemp -d)" \
- && cd $downloadDir \
- && wget --no-check-certificate "$DOWNLOAD" \
- && unzip $(basename "$DOWNLOAD") \
+RUN apk --no-cache add --virtual .build-dependencies build-base \
+ && wget https://www.epa.gov/sites/production/files/2014-06/en2source.zip \
+ && unzip en2source.zip \
  && unzip -o makefiles.ZIP \
- && buildDir="$(mktemp -d)" \
- && cd $buildDir \
- && unzip -o "$downloadDir/epanet2.zip" \
- && unzip -o "$downloadDir/GNU_EXE.ZIP" \
- && rm -rf $downloadDir \
+ && mkdir epa \
+ && cd epa \
+ && unzip -o ../epanet2.zip \
+ && unzip -o ../GNU_EXE.ZIP \
  && sed -i 's|//#define CLE|#define CLE|g' epanet.c \
  && sed -i 's|#define DLL|//#define DLL|g' epanet.c \
  && make
-
-FROM huggla/busybox:$TAG as image
-
-ARG DESTDIR
-
-COPY --from=alpine $DESTDIR $DESTDIR
