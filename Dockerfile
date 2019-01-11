@@ -8,8 +8,10 @@ ARG DOWNLOAD="https://www.epa.gov/sites/production/files/2018-10/en2source.zip"
 ARG DESTDIR
 
 RUN apk add $BUILDDEPS \
- && wget --no-check-certificate https://www.epa.gov/sites/production/files/2018-10/en2source.zip \
- && unzip en2source.zip \
+ && downloadDir="$(mktemp -d)" \
+ && cd $downloadDir \
+ && wget --no-check-certificate "$DOWNLOAD" \
+ && unzip $(basename "$DOWNLOAD") \
  && unzip -o makefiles.ZIP \
  && mkdir epa \
  && cd epa \
