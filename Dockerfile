@@ -20,7 +20,9 @@ RUN apk add $BUILDDEPS \
  && rm -rf $downloadDir \
  && sed -i 's|//#define CLE|#define CLE|g' epanet.c \
  && sed -i 's|#define DLL|//#define DLL|g' epanet.c \
- && make
+ && make \
+ && mkdir -p "$DESTDIR/usr/local/bin" \
+ && cp -a epanet2 "$DESTDIR/usr/local/bin/"
 
 FROM huggla/busybox:$TAG as image
 
