@@ -17,6 +17,7 @@ RUN apk add $BUILDDEPS \
  && cd $buildDir \
  && unzip -o "$downloadDir/epanet2.zip" \
  && unzip -o "$downloadDir/GNU_EXE.ZIP" \
+ && rm -rf $downloadDir \
  && sed -i 's|//#define CLE|#define CLE|g' epanet.c \
  && sed -i 's|#define DLL|//#define DLL|g' epanet.c \
  && make
