@@ -13,10 +13,10 @@ RUN apk add $BUILDDEPS \
  && wget --no-check-certificate "$DOWNLOAD" \
  && unzip $(basename "$DOWNLOAD") \
  && unzip -o makefiles.ZIP \
- && mkdir epa \
- && cd epa \
- && unzip -o ../epanet2.zip \
- && unzip -o ../GNU_EXE.ZIP \
+ && buildDir="$(mktemp -d)" \
+ && cd $buildDir \
+ && unzip -o "$downloadDir/epanet2.zip" \
+ && unzip -o "$downloadDir/GNU_EXE.ZIP" \
  && sed -i 's|//#define CLE|#define CLE|g' epanet.c \
  && sed -i 's|#define DLL|//#define DLL|g' epanet.c \
  && make
