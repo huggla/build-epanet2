@@ -4,7 +4,7 @@ ARG TAG="20181204"
 FROM huggla/alpine-official:$TAG as alpine
 
 RUN apk --no-cache add --virtual .build-dependencies build-base wget \
- && wget --no-check-certificate https://www.epa.gov/sites/production/files/2014-06/en2source.zip \
+ && wget --no-check-certificate https://www.epa.gov/sites/production/files/2018-10/en2source.zip \
  && unzip en2source.zip \
  && unzip -o makefiles.ZIP \
  && mkdir epa \
