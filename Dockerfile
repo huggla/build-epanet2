@@ -7,7 +7,7 @@ ARG BUILDDEPS="build-base wget"
 ARG DOWNLOAD="https://www.epa.gov/sites/production/files/2018-10/en2source.zip"
 ARG DESTDIR
 
-RUN apk --no-cache add --virtual .build-dependencies build-base wget \
+RUN apk add $BUILDDEPS \
  && wget --no-check-certificate https://www.epa.gov/sites/production/files/2018-10/en2source.zip \
  && unzip en2source.zip \
  && unzip -o makefiles.ZIP \
