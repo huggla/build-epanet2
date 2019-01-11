@@ -1,5 +1,5 @@
 ARG TAG="20181204"
-#ARG DESTDIR="/epanet2"
+ARG DESTDIR="/epanet2apa"
 
 FROM huggla/alpine-official:$TAG as alpine
 
