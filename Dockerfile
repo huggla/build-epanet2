@@ -1,7 +1,7 @@
-ARG TAG="20181204"
+ARG TAG="20190115"
 ARG DESTDIR="/epanet"
 
-FROM huggla/alpine-official:$TAG as alpine
+FROM huggla/alpine-official as alpine
 
 ARG BUILDDEPS="build-base wget"
 ARG DOWNLOAD="https://www.epa.gov/sites/production/files/2018-10/en2source.zip"
