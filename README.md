@@ -1,4 +1,6 @@
 # epanet
-Epanet for Alpine. COPY contents of /epanet2 into the root of your Alpine image.
+EPANET for Alpine edge. COPY contents of /epanet into the root of your Alpine image.
 
-20181204: Epanet 2.00.12, Alpine edge.
+20181204: EPANET 2.00.12, Alpine edge.
+
+For more info on EPANET go to https://www.epa.gov/water-research/epanet.
